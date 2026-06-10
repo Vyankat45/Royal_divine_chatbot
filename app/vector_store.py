@@ -1,25 +1,25 @@
-from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
-embedding_model = HuggingFaceEmbeddings(
-    model_name="BAAI/bge-small-en-v1.5"
-)
 
+# vector_store = Chroma(
+#     persist_directory="./chroma_db",
+#     embedding_function=embedding_model
+# )
+
+# temporary changes to test if the issue is with chroma or the embedding model
 vector_store = Chroma(
-    persist_directory="./chroma_db",
-    embedding_function=embedding_model
+    persist_directory="./chroma_db"
 )
 
 def get_vector_store():
     return vector_store
 
+
 def save_documents(documents):
+    raise Exception(
+        "Document ingestion is disabled on Render."
+    )
 
-    vector_store = get_vector_store()
-
-    vector_store.add_documents(documents)
-
-    print(f"Stored {len(documents)} chunks")
 
 def search_documents(
     query: str,
